@@ -1,0 +1,14 @@
+# OS X
+.DS_Store
+.AppleDouble
+._*
+
+## Files that might appear on external disk.
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+## KDE directory preferences.
+.directory
