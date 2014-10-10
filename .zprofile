@@ -7,7 +7,5 @@ for config_file ($DOTFILES/lib/*.zsh); do
 done;
 unset config_file;
 
-for file in ~/.{aliases,extra}; do
-	[ -f "$file" ] && [ -r "$file" ] && source "$file";
-done;
-unset file;
+# Source the .extra file if it exists and is readable.
+[ -f ~/.extra ] && [ -r ~/.extra ] && source ~/.extra;
