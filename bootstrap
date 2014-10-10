@@ -1,0 +1,13 @@
+#!/bin/zsh
+# Before we sync the files to the home directory, we should attempt to update
+# the git repository. Given that both the repository and git is available.
+if [ -d ".git" ] && hash git 2>/dev/null; then
+	git pull origin master;
+fi;
+
+# Sync the dotfiles from the project-folder to the user home-folder.
+rsync --exclude-from .bootstrap-exclude -avh --no-perms . ~;
+
+# Source the profile.
+source ~/.zprofile
+
