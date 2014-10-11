@@ -1,4 +1,6 @@
 #!/bin/zsh
+export DOTFILES="$HOME/.dotfiles";
+
 autoload -U compinit
 compinit
 
