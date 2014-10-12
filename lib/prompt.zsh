@@ -13,7 +13,7 @@ zstyle ':vcs_info:*' formats '%s' '%b'
 _prompt_user() {
 	local user="%F{red}%n%f";
 	if [[ "$(whoami)" == "root" ]]; then
-		user="%B%F{red}%n%f%b";
+		user="%B$user%b";
 	fi;
 	echo "$user";
 }
@@ -21,7 +21,7 @@ _prompt_user() {
 _prompt_host() {
 	local host="%F{yellow}%m%f";
 	if [[ "${SSH_TTY}" ]]; then
-		host="%B%F{yellow}%m%f%b";
+		host="%B$host%b";
 	fi;
 	echo "$host";
 }
