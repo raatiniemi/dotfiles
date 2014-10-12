@@ -91,13 +91,23 @@ _prompt_git_status() {
 }
 
 precmd() {
+	# Fake new line to place the $ and cursor on the second line.
 	local newline=$'\n';
+
+	# Build the prompt with the following format:
+	# $user at $host in $directory
+	#
+	# Depending on if the current directory is an git or svn repository
+	# additional repository information will be placed after directory.
+	#
+	# The prompt construction have to be placed within the precmd-function
+	# otherwise the repository information will not update.
 	PROMPT="$(_prompt_user)"
-	PROMPT+=" at "
-	PROMPT+="$(_prompt_host)"
-	PROMPT+=" in ";
-	PROMPT+="$(_prompt_directory)";
+	PROMPT+=" at $(_prompt_host)"
+	PROMPT+=" in $(_prompt_directory)";
 	PROMPT+="$(_prompt_vcs)";
-	PROMPT+="${newline}$ ";
-	PS2="%F{yellow}→%f ";
+	PROMPT+="${newline}%B$%b ";
+
+	# $PS2 is used when a single command includes newlines.
+	PS2="%B%F{yellow}→%f%b ";
 }
