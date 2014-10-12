@@ -20,7 +20,7 @@ _prompt_user() {
 
 _prompt_host() {
 	local host="%F{yellow}%m%f";
-	if [[ "${SSH_TTY}" ]]; then
+	if [ "${SSH_TTY}" ]; then
 		host="%B$host%b";
 	fi;
 	echo "$host";
