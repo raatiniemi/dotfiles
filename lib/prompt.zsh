@@ -47,46 +47,62 @@ _prompt_vcs() {
 }
 
 _prompt_git_status() {
-	local branch="$1";
 	local output="";
-	local clean=0;
-	
-	local staged=0;
-	local unstaged=0;
-	local untracked=0;
-
-	local staged_files;
-	local unstaged_files;
-	local untracked_files;
-
 	if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-		staged_files="$(git diff --staged --name-status)";
-		unstaged_files="$(git diff --name-status)";
-		untracked_files="$(git ls-files --others --exclude-standard)";
-	fi;
+		local branch="$1";
+		local clean=0;
 
-	if [ -n "$staged_files" ]; then
-		staged=$(echo "$staged_files" | wc -l);
-		output+="+";
-	fi;
+		local staged_files="$(git diff --staged --name-status)";
+		local unstaged_files="$(git diff --name-status)";
+		local untracked_files="$(git ls-files --others --exclude-standard)";
 
-	if [ -n "$unstaged_files" ]; then
-		unstaged=$(echo "$unstaged_files" | wc -l);
-		output+="!";
-	fi;
+		local staged=0;
+		local unstaged=0;
+		local untracked=0;
 
-	if [ -n "$untracked_files" ]; then
-		untracked=$(echo "$untracked_files" | wc -l);
-		output+="?";
-	fi;
-	
-	if (( $staged + $unstaged + $untracked == 0 )); then
-		clean=1;
-	else
-		output="%{%B%F{cyan}%}[$output]%{%f%b%}";
-	fi;
+		if [ -n "$staged_files" ]; then
+			staged=$(echo "$staged_files" | wc -l);
+			output+="+";
+		fi;
 
-	output=" on %{%F{blue}%}$branch%{%f%}$output";
+		if [ -n "$unstaged_files" ]; then
+			unstaged=$(echo "$unstaged_files" | wc -l);
+			output+="!";
+		fi;
+
+		if [ -n "$untracked_files" ]; then
+			untracked=$(echo "$untracked_files" | wc -l);
+			output+="?";
+		fi;
+
+		local behind=0;
+		local ahead=0;
+
+		local tracking=$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)" 2>/dev/null);
+		if [ -n "$tracking" ]; then
+			local -a behind_ahead;
+			behind_ahead=($(git rev-list --left-right --count "$tracking"...HEAD));
+			if [ -n "$behind_ahead" ]; then
+				behind=${behind_ahead[1]};
+				if (( $behind != 0 )); then
+					output="↓$output";
+				fi;
+
+				ahead=${behind_ahead[2]};
+				if (( $ahead != 0 )); then
+					output="↑$output";
+				fi;
+			fi;
+		fi;
+
+		if (( $staged + $unstaged + $untracked + $behind + $ahead == 0 )); then
+			clean=1;
+		else
+			output="%{%B%F{cyan}%}[$output]%{%f%b%}";
+		fi;
+
+		output=" on %{%F{blue}%}$branch%{%f%}$output";
+	fi;
 	echo "$output";
 }
 
