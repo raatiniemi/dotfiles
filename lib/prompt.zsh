@@ -4,10 +4,11 @@ autoload -Uz vcs_info;
 
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' formats '%s' '%b' 
 
 # Maximum number of `vcs_info_msg_*_` variables.
 zstyle ':vcs_info:*' max-exports 2
+
+zstyle ':vcs_info:*' formats '%s' '%b'
 
 _prompt_user() {
 	local user="%F{red}%n%f";
@@ -48,7 +49,6 @@ _prompt_vcs() {
 _prompt_git_status() {
 	local branch="$1";
 	local output="";
-	#"%{%F{yellow}%}${branch}%{%f%}";
 	local clean=0;
 	
 	local staged=0;
@@ -80,28 +80,24 @@ _prompt_git_status() {
 		output+="?";
 	fi;
 	
-	if (( $staged + $unstaged + $untracked == 0)); then
+	if (( $staged + $unstaged + $untracked == 0 )); then
 		clean=1;
 	else
-		output=" %{%F{cyan}%}[$output]%{%f%}";
+		output="%{%B%F{cyan}%}[$output]%{%f%b%}";
 	fi;
 
-	output="%{%F{blue}%}$branch%{%f%}$output";
+	output=" on %{%F{blue}%}$branch%{%f%}$output";
 	echo "$output";
-}
-
-_prompt_right() {
-	if [ -n "$*" ]; then
-		local lineup=$'\e[1A';
-		local linedown=$'\e[1B';
-		echo "%{${lineup}%}$*%{${linedown}%}";
-	fi;
 }
 
 precmd() {
 	local newline=$'\n';
-	PROMPT="$(_prompt_user) at $(_prompt_host) in $(_prompt_directory)${newline}$ ";
+	PROMPT="$(_prompt_user)"
+	PROMPT+=" at "
+	PROMPT+="$(_prompt_host)"
+	PROMPT+=" in ";
+	PROMPT+="$(_prompt_directory)";
+	PROMPT+="$(_prompt_vcs)";
+	PROMPT+="${newline}$ ";
 	PS2="%F{yellow}→%f ";
-
-	RPROMPT="$(_prompt_right $(_prompt_vcs))";
 }
