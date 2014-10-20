@@ -9,5 +9,5 @@ fi;
 rsync --exclude-from .bootstrap-exclude -avh --no-perms . ~;
 
 # Source the profile.
-source ~/.zprofile
+source ~/.zprofile;
 
