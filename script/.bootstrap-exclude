@@ -3,7 +3,7 @@
 
 lib
 
-.bootstrap-exclude
-bootstrap
+git
+script
 
 README.md
