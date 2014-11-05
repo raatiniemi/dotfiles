@@ -3,17 +3,17 @@ autoload colors && colors;
 
 # Prints informational messages to the user.
 info() {
-    printf " [$fg[blue] ... $reset_color] $1\n";
+    printf "  [$fg[blue] ... $reset_color] $1\n";
 }
 
 # Prints messages that require user action.
 user() {
-    printf " [$fg[yellow]  ?  $reset_color] $1\n";
+    printf "    [$fg[yellow] ? $reset_color] $1\n";
 }
 
 # Prints successful messages.
 success() {
-    printf "  [$fg[green] OK $reset_color] $1\n";
+    printf "   [$fg[green] OK $reset_color] $1\n";
 }
 
 # Prints failure messages.
