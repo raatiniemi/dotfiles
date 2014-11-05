@@ -1,13 +1,12 @@
 #!/bin/zsh
-export DOTFILES="$HOME/.dotfiles";
-
 autoload -U compinit
 compinit
 
-# Only attempt to source the library files if the
-# directory actually exists.
-if [ -d "$DOTFILES/lib" ]; then
-	for config_file ($DOTFILES/lib/*.zsh); do
+# Only attempt to source the configuration files
+# if the dotfiles directory actually exists.
+export DOTFILES="$HOME/.dotfiles";
+if [ -d $DOTFILES ]; then
+	for config_file ($DOTFILES/*/*.zsh); do
 		source $config_file;
 	done;
 	unset config_file;
