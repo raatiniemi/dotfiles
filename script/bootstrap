@@ -41,6 +41,16 @@ if [ -d ".git" ] && hash git 2>/dev/null; then
     git pull origin master;
 fi;
 
+# TODO: Run setup scripts for git, ssh, etc.
+# Each setup script should check if setup is necessary. E.g. if the ssh config
+# exists the setup has already been completed.
+#
+# The setup have to be initialized before the linking of files since setup
+# might be required for files to be complete.
+#
+# If needed the setup script should create a config file within its directory
+# that can be used regardless of whether the repository files have been updated.
+
 # Sync the dotfiles from the project-folder to the user home-folder.
 rsync --exclude-from "$DOTFILES_DIR/script/.bootstrap-exclude" -avh --no-perms . ~;
 
