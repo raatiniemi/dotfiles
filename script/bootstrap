@@ -21,6 +21,33 @@ fail() {
     printf " [$fg[red] FAIL $reset_color] $1\n";
 }
 
+# Symlink the first argument (source) to the second argument (destination).
+link_file() {
+    local src=$1;
+    local dst=$2;
+    local name=$(basename "$dst");
+
+    local skip=false;
+    local overwrite=false;
+
+    if [ -f "$dst" ]; then
+        # Check if the destination file is already symlinked to the source.
+        # If it is, we can skip it and move on.
+        local link=$(readlink "$dst");
+        if [[ ( -h "$dst" ) && ( "$src" == "$link" ) ]]; then
+            skip=true;
+        else
+            user "The $name already exists, what would you like to do? [s] Skip, [o] Overwrite?";
+            # TODO: Read the action from the user.
+        fi;
+        unset link;
+    fi;
+
+    if [ $skip = false ]; then
+        ln -s "$1" "$2";
+    fi;
+}
+
 # Since we are changing the directory, we have to send the user back to where
 # the user was before calling the script.
 ORIGIN_DIR=$(pwd);
@@ -51,8 +78,16 @@ fi;
 # If needed the setup script should create a config file within its directory
 # that can be used regardless of whether the repository files have been updated.
 
+# Find each symlink-able file and link it to the home directory.
+info 'Installing the dotfiles symlinks';
+for src in $(find "$DOTFILES_DIR" -maxdepth 2 -name '*.symlink'); do
+    # Remove the `.symlink` and prepend the dot to the destination file.
+    dst="$HOME/.$(basename "${src%.*}")";
+    link_file "$src" "$dst";
+done;
+
 # Sync the dotfiles from the project-folder to the user home-folder.
-rsync --exclude-from "$DOTFILES_DIR/script/.bootstrap-exclude" -avh --no-perms . ~;
+# rsync --exclude-from "$DOTFILES_DIR/script/.bootstrap-exclude" -avh --no-perms . ~;
 
 # Source the profile.
 source ~/.zprofile;
