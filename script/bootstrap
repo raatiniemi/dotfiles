@@ -37,10 +37,24 @@ link_file() {
         if [[ ( -h "$dst" ) && ( "$src" == "$link" ) ]]; then
             skip=true;
         else
-            user "The $name already exists, what would you like to do? [s] Skip, [o] Overwrite?";
-            # TODO: Read the action from the user.
+            user "The $name already exists, what would you like to do?";
+            echo -n "          [s] Skip, [o] Overwrite? ";
+            read -k 1 action;
+            case "$action"; in
+                o )
+                    overwrite=true;;
+                s )
+                    skip=true;;
+                * )
+                ;;
+            esac;
+            echo "";
         fi;
         unset link;
+    fi;
+
+    if [ $overwrite = true ]; then
+        rm -rf "$dst";
     fi;
 
     if [ $skip = false ]; then
@@ -85,9 +99,6 @@ for src in $(find "$DOTFILES_DIR" -maxdepth 2 -name '*.symlink'); do
     dst="$HOME/.$(basename "${src%.*}")";
     link_file "$src" "$dst";
 done;
-
-# Sync the dotfiles from the project-folder to the user home-folder.
-# rsync --exclude-from "$DOTFILES_DIR/script/.bootstrap-exclude" -avh --no-perms . ~;
 
 # Source the profile.
 source ~/.zprofile;
