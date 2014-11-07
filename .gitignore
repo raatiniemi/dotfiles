@@ -1,3 +1,6 @@
+# Prevents accidental commit of the configured gitconfig symlink.
+git/gitconfig.symlink
+
 # OS X
 .DS_Store
 .AppleDouble
