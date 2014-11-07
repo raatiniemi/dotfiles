@@ -92,6 +92,16 @@ fi;
 # If needed the setup script should create a config file within its directory
 # that can be used regardless of whether the repository files have been updated.
 
+# Retrieve all of the setup files, the symlinks might be dependant on an initial setup.
+for setup in $(find "$DOTFILES_DIR" -maxdepth 2 -name 'setup'); do
+    name=$(basename $(dirname $setup));
+    info "Running setup for $name"
+
+    # Run the setup script.
+    $setup;
+done;
+unset setup name;
+
 # Find each symlink-able file and link it to the home directory.
 info 'Installing the dotfiles symlinks';
 for src in $(find "$DOTFILES_DIR" -maxdepth 2 -name '*.symlink'); do
