@@ -4,7 +4,7 @@
 # http://www.cs.elte.hu/zsh-manual/zsh_14.html
 # https://wiki.archlinux.org/index.php/zsh
 # http://unixhelp.ed.ac.uk/CGI/man-cgi?terminfo+5
-typeset -A key
+typeset -A key;
 
 # Jump to the beginning of the line.
 key[Home]=${terminfo[khome]};
