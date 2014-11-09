@@ -6,6 +6,10 @@
 # http://unixhelp.ed.ac.uk/CGI/man-cgi?terminfo+5
 typeset -A key;
 
+# Force the Emacs-mode.
+# http://zsh.sourceforge.net/Guide/zshguide04.html
+bindkey -e;
+
 # Jump to the beginning of the line.
 key[Home]=${terminfo[khome]};
 
