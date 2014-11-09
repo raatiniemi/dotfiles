@@ -8,11 +8,9 @@ typeset -A key
 
 # Jump to the beginning of the line.
 key[Home]=${terminfo[khome]};
-key[CtrlLeft]=";5D";
 
 # Jump to the end of the line.
 key[End]=${terminfo[kend]};
-key[CtrlRight]=";5C";
 
 # Move one character forward/backward.
 key[Left]=${terminfo[kcub1]};
@@ -35,10 +33,8 @@ key[Up]=${terminfo[kcuu1]};
 key[Down]=${terminfo[kcud1]};
 
 [[ -n "${key[Home]}" ]] && bindkey "${key[Home]}" beginning-of-line
-[[ -n "${key[CtrlLeft]}" ]] && bindkey "${key[CtrlLeft]}" beginning-of-line
 
 [[ -n "${key[End]}" ]] && bindkey "${key[End]}" end-of-line
-[[ -n "${key[CtrlRight]}" ]] && bindkey "${key[CtrlRight]}" end-of-line
 
 [[ -n "${key[Left]}" ]] && bindkey "${key[Left]}" backward-char
 [[ -n "${key[Right]}" ]] && bindkey "${key[Right]}" forward-char
