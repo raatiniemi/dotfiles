@@ -79,7 +79,7 @@ DOTFILES_DIR=$(pwd);
 # the git repository. Given that both the repository and git is available.
 if [ -d ".git" ] && hash git 2>/dev/null; then
     info "Pulling the latest changes from the git repository";
-    git pull origin master;
+    `git pull origin master > /dev/null 2>&1`;
 fi;
 
 # TODO: Run setup scripts for git, ssh, etc.
