@@ -41,6 +41,8 @@ _prompt_vcs() {
 	local output;
 	if [ "$name" = "git" ]; then
 		output="$(_prompt_git_status ${vcs_info_msg_1_})";
+	elif [ "$name" = "git-svn" ]; then
+		output=" on %{%F{blue}%}${vcs_info_msg_1_}%{%f%}";
 	fi;
 
 	echo "$output";
