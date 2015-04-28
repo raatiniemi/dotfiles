@@ -6,9 +6,10 @@ zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' check-for-changes true
 
 # Maximum number of `vcs_info_msg_*_` variables.
-zstyle ':vcs_info:*' max-exports 2
+zstyle ':vcs_info:*' max-exports 3
 
-zstyle ':vcs_info:*' formats '%s' '%b'
+zstyle ':vcs_info:*' formats '%s' '%b' '%i'
+zstyle ':vcs_info:*' branchformat '%b'
 
 _prompt_user() {
 	local user="%F{red}%n%f";
@@ -43,6 +44,8 @@ _prompt_vcs() {
 		output="$(_prompt_git_status ${vcs_info_msg_1_})";
 	elif [ "$name" = "git-svn" ]; then
 		output=" on %{%F{blue}%}${vcs_info_msg_1_}%{%f%}";
+	elif [ "$name" = "svn" ]; then
+		output=" on %{%F{blue}%}${vcs_info_msg_1_}%{%f%}:%F{cyan}r${vcs_info_msg_2_}%f";
 	fi;
 
 	echo "$output";
