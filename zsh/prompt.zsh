@@ -119,7 +119,12 @@ precmd() {
 	# The prompt construction have to be placed within the precmd-function
 	# otherwise the repository information will not update.
 	PROMPT="$(_prompt_user)"
-	PROMPT+=" at $(_prompt_host)"
+
+	# Only display the host if a SSH session is active.
+	if [[ ! -z "${SSH_CLIENT}" ]]; then
+		PROMPT+=" at $(_prompt_host)"
+	fi;
+
 	PROMPT+=" in $(_prompt_directory)";
 	PROMPT+="$(_prompt_vcs)";
 	PROMPT+="${newline}%B$%b ";
