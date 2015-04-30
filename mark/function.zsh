@@ -27,10 +27,9 @@ function marks {
 	# Only attempt to list the marked directories if the .marks
 	# directory actually exists within the user directory.
 	#
-	# TODO: Clean up output, remove unnecessary blank lines.
 	# TODO: Add support for OS X.
 	if [ -d "${MARKPATH}" ]; then
-		marks=$(ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g');
+		marks=$(ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed '/^\s*$/d');
 		echo $marks;
 	else
 		echo "No directories have been marked";
