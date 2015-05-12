@@ -126,7 +126,7 @@ precmd() {
 	PROMPT="$(_prompt_user)"
 
 	# Only display the host if a SSH session is active.
-	if [[ ! -z "${SSH_CLIENT}" ]]; then
+	if [ "${SSH_TTY}" ]; then
 		PROMPT+=" at $(_prompt_host)"
 	fi;
 
