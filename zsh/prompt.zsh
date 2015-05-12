@@ -114,6 +114,13 @@ _prompt_git_status() {
 precmd() {
 	# Fake new line to place the $ and cursor on the second line.
 	local newline=$'\n';
+	PROMPT="";
+
+	# If the DISPLAY_EXIT_CODE variable exists and is set to true the exit code
+	# for the last command should be prefixed to the prompt.
+	if [[ ! -z "${DISPLAY_EXIT_CODE}" ]] && [ "${DISPLAY_EXIT_CODE}" -eq "1" ]; then
+		PROMPT+="[%?] ";
+	fi;
 
 	# Build the prompt with the following format:
 	# $user at $host in $directory
@@ -123,7 +130,7 @@ precmd() {
 	#
 	# The prompt construction have to be placed within the precmd-function
 	# otherwise the repository information will not update.
-	PROMPT="$(_prompt_user)"
+	PROMPT+="$(_prompt_user)"
 
 	# Only display the host if a SSH session is active.
 	if [ "${SSH_TTY}" ]; then
