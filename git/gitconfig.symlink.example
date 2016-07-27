@@ -41,6 +41,8 @@
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
     # Shorthand for cherry-pick commit
     cp = cherry-pick
+    # Push changes to origin
+    po = push origin
 
 [apply]
     # Detect whitespace errors when applying a patch
