@@ -46,6 +46,9 @@
     cp = cherry-pick
     # Push changes to origin
     po = push origin
+    # Stop/resume tracking a file in git
+    watch = update-index --no-assume-unchanged
+    unwatch = update-index --assume-unchanged
 
 [apply]
     # Detect whitespace errors when applying a patch
