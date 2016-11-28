@@ -2,4 +2,21 @@
 # set the size of the dock icons
 defaults write com.apple.dock tilesize -int 50
 
+# hot corners
+# top left (mission control)
+defaults write com.apple.dock wvous-tl-corner -int 2
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# top right (desktop)
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# bottom left (put display to sleep)
+defaults write com.apple.dock wvous-bl-corner -int 10
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# bottom right (disable)
+defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-modifier -int 0
+
 killall "Dock" &> /dev/null
