@@ -95,6 +95,13 @@ fi;
 # Retrieve all of the setup files, the symlinks might be dependant on an initial setup.
 for setup in $(find "$DOTFILES_DIR" -maxdepth 2 -name 'setup'); do
     name=$(basename $(dirname $setup));
+    if [[ "macos" == "$name" ]]; then
+        if [[ "$(uname)" != "Darwin" ]]; then
+            info "Skipping $name..."
+            continue;
+        fi
+    fi
+
     info "Running setup for $name"
 
     # Run the setup script.
