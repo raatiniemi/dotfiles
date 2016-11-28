@@ -1,1 +1,5 @@
 #!/bin/zsh
+# set the size of the dock icons
+defaults write com.apple.dock tilesize -int 50
+
+killall "Dock" &> /dev/null
