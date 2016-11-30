@@ -2,6 +2,9 @@
 # set the size of the dock icons
 defaults write com.apple.dock tilesize -int 50
 
+# automatically hide/show the dock
+defaults write com.apple.dock autohide -bool true
+
 # hot corners
 # top left (mission control)
 defaults write com.apple.dock wvous-tl-corner -int 2
