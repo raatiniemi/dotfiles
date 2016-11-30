@@ -35,4 +35,8 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write NSGlobalDomain NSUserReplacementItems -array
 defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array
 
+# faster keyboard repeat rate
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+
 killall "Dock" &> /dev/null
