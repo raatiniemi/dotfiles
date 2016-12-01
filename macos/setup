@@ -61,4 +61,11 @@ defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
 
+# install keyboard layout for svdvorak
+# http://tlundqvist.org/sv_dvorak/
+SVDVORAK_PATH=~/Library/Keyboard\ Layouts;
+if [ ! -f $SVDVORAK_PATH/svdvorak_osx.keylayout ]; then
+    ln -s $DOTFILES/macos/svdvorak_osx.keylayout $SVDVORAK_PATH;
+fi
+
 killall "Dock" &> /dev/null
