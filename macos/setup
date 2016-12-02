@@ -1,4 +1,8 @@
 #!/bin/zsh
+###############################################################################
+# dock, mission control, hot corners, etc.
+###############################################################################
+
 # set the size of the dock icons
 defaults write com.apple.dock tilesize -int 50
 
@@ -31,6 +35,10 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # require password immediately after screen lock
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+###############################################################################
+# language, input, keyboard, etc.
+###############################################################################
 
 # disable "natural" scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
@@ -67,6 +75,10 @@ SVDVORAK_PATH=~/Library/Keyboard\ Layouts;
 if [ ! -f $SVDVORAK_PATH/svdvorak_osx.keylayout ]; then
     ln -s $DOTFILES/macos/svdvorak_osx.keylayout $SVDVORAK_PATH;
 fi
+
+###############################################################################
+# iterm2
+###############################################################################
 
 # install Candy Colored theme for iTerm2
 # http://stevelosh.com/blog/2009/03/candy-colored-terminal/
