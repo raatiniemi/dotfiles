@@ -1,0 +1,90 @@
+#!/bin/zsh
+###############################################################################
+# dock, mission control, hot corners, etc.
+###############################################################################
+
+# set the size of the dock icons
+defaults write com.apple.dock tilesize -int 50
+
+# automatically hide/show the dock
+defaults write com.apple.dock autohide -bool true
+
+# remove delay for showing hidden dock
+defaults write com.apple.dock autohide-delay -float 0
+
+# minimize windows into application icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# hot corners
+# top left (mission control)
+defaults write com.apple.dock wvous-tl-corner -int 2
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# top right (desktop)
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# bottom left (put display to sleep)
+defaults write com.apple.dock wvous-bl-corner -int 10
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# bottom right (disable)
+defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# require password immediately after screen lock
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+###############################################################################
+# language, input, keyboard, etc.
+###############################################################################
+
+# disable "natural" scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+# set language, locale, formats, etc.
+defaults write NSGlobalDomain AppleLanguages -array "en-SE"
+defaults write NSGlobalDomain AppleLocale -string "en_SE"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
+
+# set timezone
+sudo systemsetup -settimezone "Europe/Stockholm" > /dev/null
+
+# disable character substitutions, spelling correction, etc.
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticTextCompletionEnabled -bool false
+
+# remove predefined replacement items
+defaults write NSGlobalDomain NSUserReplacementItems -array
+defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array
+
+# faster keyboard repeat rate
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# install keyboard layout for svdvorak
+# http://tlundqvist.org/sv_dvorak/
+SVDVORAK_PATH=~/Library/Keyboard\ Layouts;
+if [ ! -f $SVDVORAK_PATH/svdvorak_osx.keylayout ]; then
+    ln -s $DOTFILES/macos/svdvorak_osx.keylayout $SVDVORAK_PATH;
+fi
+
+###############################################################################
+# iterm2
+###############################################################################
+
+# install Candy Colored theme for iTerm2
+# http://stevelosh.com/blog/2009/03/candy-colored-terminal/
+defaults read com.googlecode.iTerm2 "Custom Color Presets" | grep -sq Candy;
+if [[ $? -eq 1 ]]; then
+    open "${DOTFILES}/macos/Candy Colored.itermcolors"
+fi
+
+killall "Dock" &> /dev/null
