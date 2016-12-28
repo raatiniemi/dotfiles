@@ -106,4 +106,7 @@ brew update > /dev/null
 # upgrade installed formulae
 brew upgrade > /dev/null
 
+# remove outdated versions from cellar
+brew cleanup > /dev/null
+
 killall "Dock" &> /dev/null
