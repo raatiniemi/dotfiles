@@ -100,4 +100,7 @@ if [[ $? -eq 1 ]]; then
     rehash
 fi;
 
+# make sure we're using the latest version of homebrew
+brew update > /dev/null
+
 killall "Dock" &> /dev/null
