@@ -103,4 +103,7 @@ fi;
 # make sure we're using the latest version of homebrew
 brew update > /dev/null
 
+# upgrade installed formulae
+brew upgrade > /dev/null
+
 killall "Dock" &> /dev/null
