@@ -87,4 +87,17 @@ if [[ $? -eq 1 ]]; then
     open "${DOTFILES}/macos/Candy Colored.itermcolors"
 fi
 
+###############################################################################
+# homebrew
+###############################################################################
+
+# install homebrew
+which brew > /dev/null 2>&1
+if [[ $? -eq 1 ]]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    # refresh available commands in zsh
+    rehash
+fi;
+
 killall "Dock" &> /dev/null
