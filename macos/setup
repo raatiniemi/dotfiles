@@ -106,6 +106,12 @@ brew update > /dev/null
 # upgrade installed formulae
 brew upgrade > /dev/null
 
+# install packages
+brew list -1 | grep -q "^git-extras\$"
+if [[ $? -eq 1 ]]; then
+    brew install git-extras > /dev/null
+fi
+
 # remove outdated versions from cellar
 brew cleanup > /dev/null
 
