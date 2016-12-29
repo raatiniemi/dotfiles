@@ -23,9 +23,15 @@ function homebrew_update() {
     brew upgrade > /dev/null
 }
 
+function homebrew_clean_up() {
+    # remove outdated versions from cellar
+    brew cleanup > /dev/null
+}
+
 __cleanup() {
     unset -f homebrew_install_binary
     unset -f homebrew_install_package
     unset -f homebrew_update
+    unset -f homebrew_clean_up
 }
 trap __cleanup EXIT

@@ -94,11 +94,9 @@ fi
 source "${DOTFILES}/macos/homebrew"
 homebrew_install_binary
 homebrew_update
+homebrew_clean_up
 
 # install packages
 homebrew_install_package git-extras
-
-# remove outdated versions from cellar
-brew cleanup > /dev/null
 
 killall "Dock" &> /dev/null
