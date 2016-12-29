@@ -8,7 +8,15 @@ function homebrew_install_binary() {
     fi
 }
 
+function homebrew_install_package() {
+    brew list -1 | grep -q "^$1\$"
+    if [[ $? -eq 1 ]]; then
+        brew install $1 > /dev/null
+    fi
+}
+
 __cleanup() {
     unset -f homebrew_install_binary
+    unset -f homebrew_install_package
 }
 trap __cleanup EXIT

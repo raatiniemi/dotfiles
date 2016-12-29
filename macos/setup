@@ -101,10 +101,7 @@ brew update > /dev/null
 brew upgrade > /dev/null
 
 # install packages
-brew list -1 | grep -q "^git-extras\$"
-if [[ $? -eq 1 ]]; then
-    brew install git-extras > /dev/null
-fi
+homebrew_install_package git-extras
 
 # remove outdated versions from cellar
 brew cleanup > /dev/null
