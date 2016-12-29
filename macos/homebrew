@@ -1,0 +1,14 @@
+function homebrew_install_binary() {
+    which brew > /dev/null 2>&1
+    if [[ $? -eq 1 ]]; then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+        # refresh available commands in zsh
+        rehash
+    fi
+}
+
+__cleanup() {
+    unset -f homebrew_install_binary
+}
+trap __cleanup EXIT

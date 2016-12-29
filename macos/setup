@@ -91,14 +91,8 @@ fi
 # homebrew
 ###############################################################################
 
-# install homebrew
-which brew > /dev/null 2>&1
-if [[ $? -eq 1 ]]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-    # refresh available commands in zsh
-    rehash
-fi;
+source "${DOTFILES}/macos/homebrew"
+homebrew_install_binary
 
 # make sure we're using the latest version of homebrew
 brew update > /dev/null
