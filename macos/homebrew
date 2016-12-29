@@ -15,8 +15,17 @@ function homebrew_install_package() {
     fi
 }
 
+function homebrew_update() {
+    # make sure we're using the latest version of homebrew
+    brew update > /dev/null
+
+    # upgrade installed formulae
+    brew upgrade > /dev/null
+}
+
 __cleanup() {
     unset -f homebrew_install_binary
     unset -f homebrew_install_package
+    unset -f homebrew_update
 }
 trap __cleanup EXIT

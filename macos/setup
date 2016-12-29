@@ -93,12 +93,7 @@ fi
 
 source "${DOTFILES}/macos/homebrew"
 homebrew_install_binary
-
-# make sure we're using the latest version of homebrew
-brew update > /dev/null
-
-# upgrade installed formulae
-brew upgrade > /dev/null
+homebrew_update
 
 # install packages
 homebrew_install_package git-extras
