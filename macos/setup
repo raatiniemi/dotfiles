@@ -98,5 +98,6 @@ homebrew_clean_up
 
 # install packages
 homebrew_install_package git-extras
+homebrew_install_package tmux
 
 killall "Dock" &> /dev/null
