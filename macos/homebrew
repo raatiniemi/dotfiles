@@ -33,5 +33,6 @@ function __homebrew_on_exit() {
     unset -f homebrew_install_package
     unset -f homebrew_update
     unset -f homebrew_clean_up
+    unset -f __homebrew_on_exit
 }
 trap __homebrew_on_exit EXIT
