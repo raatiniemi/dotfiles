@@ -91,6 +91,9 @@ fi
 # homebrew
 ###############################################################################
 
+# restore order for paths
+sudo cp "${DOTFILES}/macos/paths" /etc/paths
+
 source "${DOTFILES}/macos/homebrew"
 homebrew_install_binary
 homebrew_update
