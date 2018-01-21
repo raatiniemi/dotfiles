@@ -97,6 +97,7 @@ $DOTFILES/macos/homebrew_cask_install_package iterm2
 $DOTFILES/macos/homebrew_cask_install_package google-chrome
 $DOTFILES/macos/homebrew_cask_install_package atom
 $DOTFILES/macos/homebrew_cask_install_package fastlane
+$DOTFILES/macos/homebrew_cask_install_package jetbrains-toolbox
 $DOTFILES/macos/homebrew_cask_install_package android-studio
 
 ###############################################################################
