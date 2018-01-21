@@ -99,9 +99,9 @@ source "${DOTFILES}/macos/homebrew"
 homebrew_clean_up
 
 # install packages
-homebrew_install_package git
-homebrew_install_package git-extras
-homebrew_install_package tmux
-homebrew_install_package zsh-completions
+$DOTFILES/macos/homebrew_install_package git
+$DOTFILES/macos/homebrew_install_package git-extras
+$DOTFILES/macos/homebrew_install_package tmux
+$DOTFILES/macos/homebrew_install_package zsh-completions
 
 killall "Dock" &> /dev/null

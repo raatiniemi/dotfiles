@@ -1,17 +1,9 @@
-function homebrew_install_package() {
-    brew list -1 | grep -q "^$1\$"
-    if [[ $? -eq 1 ]]; then
-        brew install $1 > /dev/null
-    fi
-}
-
 function homebrew_clean_up() {
     # remove outdated versions from cellar
     brew cleanup > /dev/null
 }
 
 function __homebrew_on_exit() {
-    unset -f homebrew_install_package
     unset -f homebrew_clean_up
     unset -f __homebrew_on_exit
 }
