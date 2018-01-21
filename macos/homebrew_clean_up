@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+BREW=$(which brew 2> /dev/null)
+if [ $? -eq 1 ]; then
+    echo "homebrew does not seem to be installed."
+    exit 1
+fi
+
+echo "remove outdated versions from cellar."
+$BREW cleanup > /dev/null
