@@ -93,8 +93,8 @@ fi
 # restore order for paths
 sudo cp "${DOTFILES}/macos/paths" /etc/paths
 
+$DOTFILES/macos/homebrew_install
 source "${DOTFILES}/macos/homebrew"
-homebrew_install_binary
 homebrew_update
 homebrew_clean_up
 

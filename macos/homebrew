@@ -1,13 +1,3 @@
-function homebrew_install_binary() {
-    which brew > /dev/null 2>&1
-    if [[ $? -eq 1 ]]; then
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-        # refresh available commands in zsh
-        rehash
-    fi
-}
-
 function homebrew_install_package() {
     brew list -1 | grep -q "^$1\$"
     if [[ $? -eq 1 ]]; then
@@ -29,7 +19,6 @@ function homebrew_clean_up() {
 }
 
 function __homebrew_on_exit() {
-    unset -f homebrew_install_binary
     unset -f homebrew_install_package
     unset -f homebrew_update
     unset -f homebrew_clean_up
