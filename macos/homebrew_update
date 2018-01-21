@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+BREW=$(which brew 2> /dev/null)
+if [ $? -eq 1 ]; then
+    echo "homebrew does not seem to be installed."
+    exit 1
+fi
+
+echo "ensure we are using latest version of homebrew."
+$BREW update > /dev/null
+
+echo "ensure installed formulaes are up-to-date."
+$BREW upgrade > /dev/null
