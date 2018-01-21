@@ -94,8 +94,8 @@ fi
 sudo cp "${DOTFILES}/macos/paths" /etc/paths
 
 $DOTFILES/macos/homebrew_install
+$DOTFILES/macos/homebrew_update
 source "${DOTFILES}/macos/homebrew"
-homebrew_update
 homebrew_clean_up
 
 # install packages

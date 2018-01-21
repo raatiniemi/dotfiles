@@ -5,14 +5,6 @@ function homebrew_install_package() {
     fi
 }
 
-function homebrew_update() {
-    # make sure we're using the latest version of homebrew
-    brew update > /dev/null
-
-    # upgrade installed formulae
-    brew upgrade > /dev/null
-}
-
 function homebrew_clean_up() {
     # remove outdated versions from cellar
     brew cleanup > /dev/null
@@ -20,7 +12,6 @@ function homebrew_clean_up() {
 
 function __homebrew_on_exit() {
     unset -f homebrew_install_package
-    unset -f homebrew_update
     unset -f homebrew_clean_up
     unset -f __homebrew_on_exit
 }
