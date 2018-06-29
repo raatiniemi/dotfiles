@@ -15,6 +15,9 @@ defaults write com.apple.dock autohide-delay -float 0
 # minimize windows into application icon
 defaults write com.apple.dock minimize-to-application -bool true
 
+# disable automatically rearrange spaces based on recent use
+defaults write com.apple.dock mru-spaces -bool false
+
 # hot corners
 # top left (mission control)
 defaults write com.apple.dock wvous-tl-corner -int 2
