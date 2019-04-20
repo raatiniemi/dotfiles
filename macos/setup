@@ -68,6 +68,9 @@ defaults write NSGlobalDomain NSAutomaticTextCompletionEnabled -bool false
 defaults write NSGlobalDomain NSUserReplacementItems -array
 defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array
 
+# enable secondary click on bluetooth mouse
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
+
 # faster keyboard repeat rate
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
