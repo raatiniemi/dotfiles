@@ -95,6 +95,8 @@
     log = true
 [push]
     default = simple
+[pull]
+    rebase = true
 
 # URL shorthands
 [url "git@github.com:"]
