@@ -75,12 +75,6 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode T
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
 
-# remove custom keyboard layout for svdvorak
-SVDVORAK_PATH=~/Library/Keyboard\ Layouts/svdvorak_osx.keylayout
-if [ -f $SVDVORAK_PATH ]; then
-    rm -f $SVDVORAK_PATH
-fi
-
 ###############################################################################
 # homebrew
 ###############################################################################
