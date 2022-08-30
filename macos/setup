@@ -92,8 +92,8 @@ $DOTFILES/macos/homebrew_install_package git-extras
 $DOTFILES/macos/homebrew_install_package tmux
 $DOTFILES/macos/homebrew_install_package zsh-completions
 $DOTFILES/macos/homebrew_install_package firefox
-$DOTFILES/macos/homebrew_cask_install_package iterm2
-$DOTFILES/macos/homebrew_cask_install_package jetbrains-toolbox
+$DOTFILES/macos/homebrew_install_package iterm2
+$DOTFILES/macos/homebrew_install_package jetbrains-toolbox
 
 ###############################################################################
 # iterm2
