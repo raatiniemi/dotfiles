@@ -6,7 +6,7 @@ if [ -f "$ssh_home/known_hosts" ]; then
 fi;
 
 if [ -f "$ssh_home/config" ]; then
-	hosts=($hosts `grep ^Host $ssh_home/config|sed s/Host\ //|egrep -v '^\*$'`);
+	hosts=($hosts `grep ^Host $ssh_home/config|sed s/Host\ //|grep -E -v '^\*$'`);
 fi;
 
 if [ -n "$hosts" ]; then
