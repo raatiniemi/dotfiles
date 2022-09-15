@@ -90,6 +90,8 @@
     added = yellow
     changed = green
     untracked = cyan
+[init]
+    defaultBranch = main
 [merge]
     # Include summaries of merged commits in newly created merge commit messages
     log = true
