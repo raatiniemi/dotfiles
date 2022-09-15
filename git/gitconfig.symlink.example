@@ -99,6 +99,8 @@
     default = simple
 [pull]
     rebase = true
+[rebase]
+    autoSquash = true
 
 # URL shorthands
 [url "git@github.com:"]
